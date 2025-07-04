@@ -1,0 +1,35 @@
+# Python virtual environment
+venv/
+
+# Environment variables
+.env
+
+# Vector store and indexes
+vector_store/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# Node modules (if using Node.js in frontend)
+frontend/node_modules/
+
+# Build output
+frontend/.next/
+frontend/out/
+
+# Log files
+*.log
+
+# Zip archives
+*.zip 
