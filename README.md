@@ -91,8 +91,7 @@ Create a `.env` file in the root or backend directory with:
 ```
 WATSONX_API_KEY=your_ibm_watsonx_api_key
 WATSONX_URL=your_ibm_watsonx_project_url
-WATSON_API_KEY=your_ibm_watson_nlu_api_key
-WATSON_INSTANCE_URL=your_ibm_watson_nlu_instance_url
+PROJECT_ID=your_ibm_watsonx_project_id
 ```
 
 #### Run Backend
@@ -159,10 +158,5 @@ PDF-QA/
 
 ---
 
-## License
-[MIT](LICENSE)
-
----
-
 ## Credits
-- Built with IBM Watsonx, LangChain, HuggingFace, Next.js, FastAPI, and Streamlit.
+- Built with IBM Watsonx, LangChain, HuggingFace, Next.js, FastAPI.

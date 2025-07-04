@@ -10,6 +10,7 @@ load_dotenv()
 # WatsonX Config
 API_KEY = os.getenv("WATSONX_API_KEY")
 WATSONX_URL = os.getenv("WATSONX_URL")
+project_id = os.getenv("PROJECT_ID")
 
 # FAISS Config
 INDEX_PATH = "vector_store/faiss_index"
@@ -74,7 +75,7 @@ Answer:"""
         "parameters": {
             "max_new_tokens": 1026
         },
-        "project_id": "4bd5cd97-1d38-4a39-8191-661a0c10e535"
+        "project_id": project_id
     }
 
     response = requests.post(url, headers=headers, json=payload)
