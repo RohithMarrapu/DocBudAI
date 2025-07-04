@@ -130,15 +130,16 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-gray-300 hover:bg-gray-50 px-8 py-4 text-lg h-auto"
-                  onClick={() => window.open('#documentation', '_blank')}
-                >
-                  <BookOpen className="h-5 w-5 mr-2" />
-                  Read Documentation
-                </Button>
+                <Link href="https://github.com/RohithMarrapu/DocBudAI/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-gray-300 hover:bg-gray-50 px-8 py-4 text-lg h-auto"
+                  >
+                    <BookOpen className="h-5 w-5 mr-2" />
+                    Read Documentation
+                  </Button>
+                </Link>
               </div>
 
               {/* Demo Preview */}
