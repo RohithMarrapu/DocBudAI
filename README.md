@@ -1,6 +1,6 @@
 # DocBudAI
 
-Chat with your PDF documents using advanced AI. Upload a PDF, ask questions, and get instant, context-aware answers. Powered by FastAPI, Streamlit, Next.js, LangChain, FAISS, HuggingFace, and IBM Watsonx.
+Chat with your PDF documents using advanced AI. Upload a PDF, ask questions, and get instant, context-aware answers. Powered by FastAPI,  Next.js, LangChain, FAISS, HuggingFace, and IBM Watsonx.
 
 ---
 
@@ -11,7 +11,6 @@ Chat with your PDF documents using advanced AI. Upload a PDF, ask questions, and
 - [Setup Instructions](#setup-instructions)
   - [Backend](#backend)
   - [Frontend](#frontend)
-  - [Streamlit App (Optional)](#streamlit-app-optional)
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
@@ -48,8 +47,6 @@ Chat with your PDF documents using advanced AI. Upload a PDF, ask questions, and
 - **TypeScript**: Type safety
 - **Axios**: HTTP requests
 
-### Optional
-- **Streamlit**: Simple local UI for testing
 
 ---
 
@@ -76,7 +73,6 @@ graph TD;
 ### 1. Clone the Repository
 ```bash
 git clone <your-repo-url>
-cd PDF-QA
 ```
 
 ### 2. Backend Setup
@@ -111,11 +107,6 @@ npm run dev
 ```
 The app will be available at `http://localhost:3000`.
 
-### 4. (Optional) Streamlit App
-For a simple local UI:
-```bash
-streamlit run app.py
-```
 
 ---
 
@@ -137,7 +128,7 @@ streamlit run app.py
 
 ## Folder Structure
 ```
-PDF-QA/
+DocBudAI/
 ├── app.py                # Streamlit app (optional)
 ├── backend/
 │   ├── main.py           # FastAPI backend
