@@ -24,6 +24,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Head from 'next/head';
 
 interface QAHistoryItem {
@@ -53,9 +54,11 @@ export default function Home() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
@@ -66,6 +69,14 @@ export default function Home() {
 
   // Load conversations from localStorage on mount
   useEffect(() => {
+    // Check if user is logged in
+    const userData = localStorage.getItem('user');
+    if (!userData) {
+      router.push('/login');
+      return;
+    }
+    setUser(JSON.parse(userData));
+
     const savedConversations = localStorage.getItem('pdf-chat-conversations');
     if (savedConversations) {
       const parsed = JSON.parse(savedConversations);
@@ -170,6 +181,12 @@ export default function Home() {
     setStreamingText('');
     setQuestionError(null);
     setCurrentConversationId(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('pdf-chat-conversations');
+    router.push('/');
   };
 
   const loadConversation = (conversation: Conversation) => {
@@ -385,6 +402,23 @@ export default function Home() {
                   <Plus className="h-4 w-4 mr-2" />
                   New Chat
                 </Button>
+                
+                {user && (
+                  <div className="flex items-center gap-3">
+                    <div className="text-right hidden sm:block">
+                      <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                      <p className="text-xs text-gray-500">{user.email}</p>
+                    </div>
+                    <Button 
+                      onClick={handleLogout}
+                      variant="outline" 
+                      size="sm"
+                      className="border-gray-300 hover:bg-gray-50"
+                    >
+                      Sign Out
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

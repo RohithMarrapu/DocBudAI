@@ -86,9 +86,14 @@ export default function LandingPage() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Link href="/chat">
+                <Link href="/login">
+                  <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/signup">
                   <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
-                    Try Now
+                    Get Started
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
                 </Link>
@@ -122,19 +127,31 @@ export default function LandingPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                <Link href="/chat">
+                <Link href="/signup">
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg h-auto">
                     <Sparkles className="h-5 w-5 mr-2" />
-                    Start Chatting Free
+                    Get Started Free
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </Link>
                 
-                <Link href="https://github.com/RohithMarrapu/DocBudAI/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                <Link href="/login">
                   <Button 
                     variant="outline" 
                     size="lg" 
                     className="border-gray-300 hover:bg-gray-50 px-8 py-4 text-lg h-auto"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="flex justify-center mb-16">
+                <Link href="https://github.com/RohithMarrapu/DocBudAI/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-gray-300 hover:bg-gray-50 px-6 py-3 text-base h-auto"
                   >
                     <BookOpen className="h-5 w-5 mr-2" />
                     Read Documentation
@@ -282,7 +299,7 @@ export default function LandingPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/chat">
+              <Link href="/signup">
                 <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 px-8 py-4 text-lg h-auto font-semibold">
                   <Sparkles className="h-5 w-5 mr-2" />
                   Start Free Today
@@ -302,6 +319,7 @@ export default function LandingPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center gap-3 mb-4 md:mb-0">
+                <Link href="/" className="flex items-center gap-3">
                 <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl">
                   <FileText className="h-6 w-6 text-white" />
                 </div>
@@ -309,6 +327,7 @@ export default function LandingPage() {
                   <h3 className="text-xl font-bold">DocBudAI</h3>
                   <p className="text-gray-400 text-sm">PDF Intelligence Platform</p>
                 </div>
+                </Link>
               </div>
               
               <div className="text-center md:text-right">
