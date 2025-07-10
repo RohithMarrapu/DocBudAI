@@ -26,6 +26,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
+import { useAuth } from '@/hooks/useAuth';
 
 interface QAHistoryItem {
   question: string;
@@ -54,11 +55,11 @@ export default function Home() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { user, logout, loading } = useAuth();
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
@@ -69,20 +70,18 @@ export default function Home() {
 
   // Load conversations from localStorage on mount
   useEffect(() => {
-    // Check if user is logged in
-    const userData = localStorage.getItem('user');
-    if (!userData) {
+    // Redirect to login if not authenticated
+    if (!loading && !user) {
       router.push('/login');
       return;
     }
-    setUser(JSON.parse(userData));
 
     const savedConversations = localStorage.getItem('pdf-chat-conversations');
     if (savedConversations) {
       const parsed = JSON.parse(savedConversations);
       setConversations(parsed);
     }
-  }, []);
+  }, [user, loading, router]);
 
   // Save conversations to localStorage
   const saveConversations = (convs: Conversation[]) => {
@@ -183,8 +182,8 @@ export default function Home() {
     setCurrentConversationId(null);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
+  const handleLogout = async () => {
+    await logout();
     localStorage.removeItem('pdf-chat-conversations');
     router.push('/');
   };
@@ -369,6 +368,19 @@ export default function Home() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-2xl inline-block mb-4">
+            <FileText className="h-8 w-8 text-white animate-pulse" />
+          </div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -406,7 +418,7 @@ export default function Home() {
                 {user && (
                   <div className="flex items-center gap-3">
                     <div className="text-right hidden sm:block">
-                      <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                      <p className="text-sm font-medium text-gray-900">{user.displayName || user.email?.split('@')[0]}</p>
                       <p className="text-xs text-gray-500">{user.email}</p>
                     </div>
                     <Button 

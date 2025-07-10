@@ -2,18 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Get the pathname of the request (e.g. /, /login, /chat)
-  const { pathname } = request.nextUrl;
-
-  // Define public routes that don't require authentication
-  const publicRoutes = ['/', '/login', '/signup'];
-  
-  // Check if the current route is public
-  const isPublicRoute = publicRoutes.includes(pathname);
-
-  // For now, we'll just allow all routes since we're using localStorage for auth
-  // In a real app, you'd check for valid JWT tokens here
-  
+  // Firebase handles authentication on the client side
+  // Middleware is not needed for Firebase Auth as it uses client-side state
   return NextResponse.next();
 }
 
